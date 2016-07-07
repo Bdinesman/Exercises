@@ -1,37 +1,56 @@
 <?php
 function add($a, $b)
 {
-    return $a + $b;
+	if(is_numeric($a)==false or is_numeric($b)==false){
+		throwError('nonnumberic');
+	}else{
+		return $a + $b;
+	}
 }
 
 function subtract($a, $b)
 {
-    return $a - $b;
+	if(is_numeric($a)==false or is_numeric($b)==false){
+		throwError('nonnumberic');
+	}else{
+		return $a - $b;
+	}
 }
 
 function multiply($a, $b)
 {
-    return $a * $b;
+	if(is_numeric($a)==false or is_numeric($b)==false){
+		throwError('nonnumberic');
+	}else{
+		return $a * $b;
+	}
 }
 
 function divide($a, $b)
 {
-	if($b==0){
-		return 'ERROR: CANNOT DIVIDE BY 0';
+	if($b===0){
+		throwError('zero');
+	}elseif(is_numeric($a)==false or is_numeric($b)==false){
+		throwError('nonnumberic');
 	}else{
-		return $a/$b;
+		return $a / $b;
 	}
 }
 function modulous($a,$b){
-	if($b==0){
-		return 'ERROR CANNOT DIVIDE BY 0';
+	if($b===0){
+		throwError('zero');
+	}elseif(is_numeric($a)==false or is_numeric($b)==false){
+		throwError('nonnumberic');
 	}else{
 		return $a % $b;
 	}
 }
-echo '$a+$b=' . add($a,$b) . PHP_EOL;
-echo '$a-$b=' . subtract($a,$b) . PHP_EOL;
-echo '$a*$b=' . multiply($a,$b) . PHP_EOL;
-echo '$a/$b=' . divide($a,$b) . PHP_EOL;
-echo '$a%$b=' . modulous($a,$b) . PHP_EOL;
+function throwError($type){
+	if($type==strtoLower('zero')){
+		echo 'ERROR: CANNOT DIVIDE BY 0' . PHP_EOL;
+	}elseif($type==strtoLower('nonnumberic')){
+		echo 'ERROR: NON-NUMERIC INPUTS' . PHP_EOL;
+	}
+}
+
 // Add code to test your functions here
